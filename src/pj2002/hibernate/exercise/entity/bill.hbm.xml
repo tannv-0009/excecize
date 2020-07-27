@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='UTF-8'?>  
+<!DOCTYPE hibernate-mapping PUBLIC  
+ "-//Hibernate/Hibernate Mapping DTD 5.3//EN"  
+ "http://hibernate.sourceforge.net/hibernate-mapping-5.3.dtd">  
+  
+ <hibernate-mapping>  
+  <class name="pj2002.hibernate.exercise.entity.Bill" table="bill">  
+    <id name="id">  
+     <generator class="native"></generator>  
+    </id>  
+            
+    <property name="userId" column="user_id" type="int"></property>
+    <property name="buyDate" column="buy_date" type="java.sql.Date"></property> 
+    
+    <!-- <list name="details" cascade="all" lazy="true" inverse="false" >
+      <key column = "bill_id"/>
+      <list-index column = "id" base="1" />
+      <one-to-many class="pj2002.hibernate.exercise.entity.Detail"/>
+    </list>  -->
+            
+  </class>  
+            
+ </hibernate-mapping>  

@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='UTF-8'?>  
+<!DOCTYPE hibernate-mapping PUBLIC  
+ "-//Hibernate/Hibernate Mapping DTD 5.3//EN"  
+ "http://hibernate.sourceforge.net/hibernate-mapping-5.3.dtd">  
+  
+ <hibernate-mapping>  
+  <class name="pj2002.hibernate.exercise.entity.User" table="user">  
+    <id name="id">  
+     <generator class="native"></generator>  
+    </id>  
+            
+    <property name="name"></property>
+    <property name="age"></property>
+    <property name="address"></property> 
+    
+    <list name = "carts" cascade="all" lazy="true" inverse="false" >
+      <key column = "user_id"/>
+      <list-index column = "id" base="1" />
+      <one-to-many class="pj2002.hibernate.exercise.entity.Cart"/>
+    </list>
+    
+    <list name = "bills" cascade="all" lazy="true" inverse="false" >
+      <key column = "user_id"/>
+      <list-index column = "id" base="1" />
+      <one-to-many class="pj2002.hibernate.exercise.entity.Bill"/>
+    </list>
+            
+  </class>  
+            
+ </hibernate-mapping>  
