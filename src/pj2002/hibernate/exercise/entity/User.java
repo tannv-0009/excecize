@@ -58,4 +58,8 @@ public class User {
 		this.bills = bills;
 	}
 
+	@Override
+	public String toString() {
+		return " Id: "+this.getId() + " - Age: "+this.getAge() + " - " + this.getName()+ " Address: "+ this.getAddress();
+	}
 }
