@@ -1,24 +1,22 @@
 package pj2002.hibernate.exercise.dao;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
-
-import pj2002.hibernate.exercise.entity.User;
+import pj2002.hibernate.exercise.entity.Bill;
 import pj2002.hibernate.exercise.util.HibernateUtil;
 
-public class UserDAO {
+import java.util.List;
+
+public class BillDao {
 	
-	public User insert(User user) {
+	public Bill insert(Bill bill) {
 	Session session =HibernateUtil.getSessionFactory().openSession();
 	Transaction transaction=session.beginTransaction();
 
 		try {
-			session.save(user);
+			session.save(bill);
 			transaction.commit();
 		}
 		catch (HibernateException exeption)
@@ -30,14 +28,14 @@ public class UserDAO {
 			session.close();
 		}
 		
-		return user;
+		return bill;
 	}
 
-	public User update(User user) {
+	public Bill update(Bill bill) {
 		Session session =HibernateUtil.getSessionFactory().openSession();
 		try {
 			Transaction transaction =session.beginTransaction();
-			session.update(user);
+			session.update(bill);
 			transaction.commit();
 		}
 		catch (HibernateException exeption)
@@ -49,16 +47,16 @@ public class UserDAO {
 			session.close();
 		}
 
-		return user;
+		return bill;
 	}
 
 
-	public boolean delete(Integer userId) {
+	public boolean delete(Integer billId) {
 		Session session =HibernateUtil.getSessionFactory().openSession();
 		try {
 			Transaction transaction =session.beginTransaction();
 
-			session.delete(findById(userId));
+			session.delete(findById(billId));
 
 			transaction.commit();
 		}
@@ -76,13 +74,13 @@ public class UserDAO {
 	}
 
 
-	public User findById(Integer userId) {
-		User user=null;
+	public Bill findById(Integer billId) {
+		Bill bill=null;
 		Session session =HibernateUtil.getSessionFactory().openSession();
 		try {
-			Query<User> query= session.createQuery("From User WHERE id = :userId");
-			query.setParameter("userId",userId);
-			user = query.getSingleResult();
+			Query<Bill> query= session.createQuery("From Bill WHERE id = :billId");
+			query.setParameter("billId",billId);
+			bill = query.getSingleResult();
 		}
 		catch (Exception ex)
 		{
@@ -92,15 +90,15 @@ public class UserDAO {
 			session.close();
 		}
 
-		return user;
+		return bill;
 	}
 
-	public List<User> findByAll() {
-		List<User> users=null;
+	public List<Bill> findByAll() {
+		List<Bill> bills=null;
 		Session session =HibernateUtil.getSessionFactory().openSession();
 		try {
-			Query<User> query= session.createQuery("From User");
-			users = query.getResultList();
+			Query<Bill> query= session.createQuery("From Bill");
+			bills = query.getResultList();
 		}
 		catch (Exception ex)
 		{
@@ -110,7 +108,7 @@ public class UserDAO {
 			session.close();
 		}
 
-		return users;
+		return bills;
 	}
 
 

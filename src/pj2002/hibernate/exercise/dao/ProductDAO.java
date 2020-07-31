@@ -1,24 +1,22 @@
 package pj2002.hibernate.exercise.dao;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
-
-import pj2002.hibernate.exercise.entity.User;
+import pj2002.hibernate.exercise.entity.Product;
 import pj2002.hibernate.exercise.util.HibernateUtil;
 
-public class UserDAO {
+import java.util.List;
+
+public class ProductDAO {
 	
-	public User insert(User user) {
+	public Product insert(Product product) {
 	Session session =HibernateUtil.getSessionFactory().openSession();
 	Transaction transaction=session.beginTransaction();
 
 		try {
-			session.save(user);
+			session.save(product);
 			transaction.commit();
 		}
 		catch (HibernateException exeption)
@@ -30,14 +28,14 @@ public class UserDAO {
 			session.close();
 		}
 		
-		return user;
+		return product;
 	}
 
-	public User update(User user) {
+	public Product update(Product product) {
 		Session session =HibernateUtil.getSessionFactory().openSession();
 		try {
 			Transaction transaction =session.beginTransaction();
-			session.update(user);
+			session.update(product);
 			transaction.commit();
 		}
 		catch (HibernateException exeption)
@@ -49,16 +47,16 @@ public class UserDAO {
 			session.close();
 		}
 
-		return user;
+		return product;
 	}
 
 
-	public boolean delete(Integer userId) {
+	public boolean delete(Integer productId) {
 		Session session =HibernateUtil.getSessionFactory().openSession();
 		try {
 			Transaction transaction =session.beginTransaction();
 
-			session.delete(findById(userId));
+			session.delete(findById(productId));
 
 			transaction.commit();
 		}
@@ -76,13 +74,13 @@ public class UserDAO {
 	}
 
 
-	public User findById(Integer userId) {
-		User user=null;
+	public Product findById(Integer productId) {
+		Product product=null;
 		Session session =HibernateUtil.getSessionFactory().openSession();
 		try {
-			Query<User> query= session.createQuery("From User WHERE id = :userId");
-			query.setParameter("userId",userId);
-			user = query.getSingleResult();
+			Query<Product> query= session.createQuery("From Product WHERE id = :productId");
+			query.setParameter("productId",productId);
+			product = query.getSingleResult();
 		}
 		catch (Exception ex)
 		{
@@ -92,15 +90,15 @@ public class UserDAO {
 			session.close();
 		}
 
-		return user;
+		return product;
 	}
 
-	public List<User> findByAll() {
-		List<User> users=null;
+	public List<Product> findByAll() {
+		List<Product> products=null;
 		Session session =HibernateUtil.getSessionFactory().openSession();
 		try {
-			Query<User> query= session.createQuery("From User");
-			users = query.getResultList();
+			Query<Product> query= session.createQuery("From Product");
+			products = query.getResultList();
 		}
 		catch (Exception ex)
 		{
@@ -110,7 +108,7 @@ public class UserDAO {
 			session.close();
 		}
 
-		return users;
+		return products;
 	}
 
 

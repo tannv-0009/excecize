@@ -1,13 +1,22 @@
 package pj2002.hibernate.exercise.entity;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class User {
+public class User implements Serializable {
 	private Integer id;
 	private String name;
 	private Integer age;
 	private String address;
-	private List<Cart> carts;
+
+	public List<Bill> getBills() {
+		return bills;
+	}
+
+	public void setBills(List<Bill> bills) {
+		this.bills = bills;
+	}
+
 	private List<Bill> bills;
 
 	public Integer getId() {
@@ -42,21 +51,6 @@ public class User {
 		this.address = address;
 	}
 
-	public List<Cart> getCarts() {
-		return carts;
-	}
-
-	public void setCarts(List<Cart> carts) {
-		this.carts = carts;
-	}
-
-	public List<Bill> getBills() {
-		return bills;
-	}
-
-	public void setBills(List<Bill> bills) {
-		this.bills = bills;
-	}
 
 	@Override
 	public String toString() {

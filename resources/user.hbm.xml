@@ -5,26 +5,18 @@
   
  <hibernate-mapping>  
   <class name="pj2002.hibernate.exercise.entity.User" table="user">  
-    <id name="id">  
+    <id name="id" column="user_id">
      <generator class="native"></generator>  
     </id>  
             
     <property name="name"></property>
     <property name="age"></property>
-    <property name="address"></property> 
-    
-    <list name = "carts" cascade="all" lazy="true" inverse="false" >
-      <key column = "user_id"/>
-      <list-index column = "id" base="1" />
-      <one-to-many class="pj2002.hibernate.exercise.entity.Cart"/>
-    </list>
-    
-    <list name = "bills" cascade="all" lazy="true" inverse="false" >
-      <key column = "user_id"/>
-      <list-index column = "id" base="1" />
-      <one-to-many class="pj2002.hibernate.exercise.entity.Bill"/>
-    </list>
-            
+    <property name="address"></property>
+      <list name="bills"  table="bill" inverse="true" cascade="all" >
+        <key column="user_id"  not-null="true" />
+          <list-index column="idx" />
+        <one-to-many class="pj2002.hibernate.exercise.entity.Bill"/>
+      </list>
   </class>  
             
  </hibernate-mapping>  

@@ -1,11 +1,23 @@
 package pj2002.hibernate.exercise.entity;
 
-public class Product {
+import java.io.Serializable;
+import java.util.Set;
+
+public class Product implements Serializable {
 	private Integer id;
 	private String name;
 	private Integer size;
 	private Integer price;
 
+	public Set<Bill> getBills() {
+		return bills;
+	}
+
+	public void setBills(Set<Bill> bills) {
+		this.bills = bills;
+	}
+
+	private Set<Bill> bills;
 	public Integer getId() {
 		return id;
 	}

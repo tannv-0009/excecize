@@ -1,13 +1,30 @@
 package pj2002.hibernate.exercise.entity;
 
-import java.sql.Date;
+import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
-public class Bill {
+public class Bill  implements Serializable {
 	private Integer id;
-	private Integer userId;
+	private User user;
 	private Date buyDate;
-	private List<Detail> details;
+	private Set<Product> products;
+	public Set<Product> getProducts() {
+		return products;
+	}
+
+	public void setProducts(Set<Product> products) {
+		this.products = products;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
 
 	public Integer getId() {
 		return id;
@@ -17,28 +34,12 @@ public class Bill {
 		this.id = id;
 	}
 
-	public Integer getUserId() {
-		return userId;
-	}
-
-	public void setUserId(Integer userId) {
-		this.userId = userId;
-	}
-
 	public Date getBuyDate() {
 		return buyDate;
 	}
 
 	public void setBuyDate(Date buyDate) {
 		this.buyDate = buyDate;
-	}
-
-	public List<Detail> getDetails() {
-		return details;
-	}
-
-	public void setDetails(List<Detail> details) {
-		this.details = details;
 	}
 
 }
