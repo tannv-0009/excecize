@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='UTF-8'?>  
+<!DOCTYPE hibernate-mapping PUBLIC  
+ "-//Hibernate/Hibernate Mapping DTD 5.3//EN"  
+ "http://hibernate.sourceforge.net/hibernate-mapping-5.3.dtd">  
+  
+ <hibernate-mapping>  
+  <class name="pj2002.hibernate.exercise.entity.Bill" table="bill">  
+    <id name="id" column="bill_id">
+     <generator class="identity"></generator>
+    </id>
+
+            
+      <property name="buyDate" column="buy_date" type="java.sql.Date"></property>
+      <many-to-one name ="user"
+                   class="pj2002.hibernate.exercise.entity.User"
+                   column="user_id"  not-null="true"/>
+
+      <set name="products" table="product_bill" inverse="false" lazy="true" fetch="select" cascade="all">
+          <key>
+              <column name="bill_id" not-null="true" />
+          </key>
+          <many-to-many entity-name="pj2002.hibernate.exercise.entity.Product">
+              <column name="product_id" not-null="true" />
+          </many-to-many>
+      </set>
+  </class>  
+            
+ </hibernate-mapping>  
